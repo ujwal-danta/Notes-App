@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import Notes from "./Pages/Notes"
-import Create from "./Pages/Create"
+import Notes from "./Pages/Create"
+import Create from "./Pages/Notes"
 
 function App() {
   return (
@@ -9,10 +9,12 @@ function App() {
      <Router>
         <Switch>
           <Route exact path="/">
-            <Notes />
+            {/* <Notes /> */}
+            <Create />
           </Route>
           <Route path="/create">
-            <Create />
+            {/* <Create /> */}
+            <Notes/>
           </Route>
         </Switch>
       </Router>
