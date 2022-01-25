@@ -37,13 +37,8 @@ const Notes = () => {
     const [details, setDetails] = useState('')
     const [titleError, setTitleError] = useState(false)
     const [detailsError, setDetailsError] = useState(false)
-    const [catergory,setCategory] = useState("todo")
-    const [data,setData] = useState([]);
-    useEffect(()=>{
-    fetch("http://localhost:8000/notes")
-    .then(res=>res.json())
-    .then(data=>setData(data));
-    },[])
+    const [category,setCategory] = useState("todo")
+   
 
     let history = useHistory();
 
@@ -53,7 +48,7 @@ const Notes = () => {
             headers: {
                 'Content-Type': 'application/json'
               },
-              body: JSON.stringify({title,details,catergory})
+              body: JSON.stringify({title,details,category})
         })
         .then(res=>{
             history.push("/")
@@ -86,7 +81,7 @@ const Notes = () => {
         setDetailsError(false);
         if (!title) setTitleError(true);
         if (!details) setDetailsError(true);
-        if(title && details && catergory)
+        if(title && details && category)
         postData();
     }
 
@@ -104,7 +99,7 @@ const Notes = () => {
                     <TextFields error={detailsError} color='secondary' label="Details" multiline rows={4} fullWidth variant="outlined" onChange={(e) => setDetails(e.target.value)} />
                  <Div>
                  <FormControl>
-                    <RadioGroup defaultValue={catergory} onChange={e=>setCategory(e.target.value)}>
+                    <RadioGroup defaultValue={category} onChange={e=>setCategory(e.target.value)}>
                         <FormControlLabel  value="money" control={<Radio color="secondary" />} label="Money" />
                         <FormControlLabel value="todo" control={<Radio color="secondary" />} label="Todo" />
                         <FormControlLabel value="remainder" control={<Radio color="secondary"/>} label="Remainder" />
